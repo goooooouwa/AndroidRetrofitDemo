@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
                     val result =
                         "Album id: ${albumItem.id}, Album title: ${albumItem.title}, User id: ${albumItem.userId}"
                     textView.append(result)
-                    Log.i("MyTag", textView.text.toString())
                 }
             }
         })
