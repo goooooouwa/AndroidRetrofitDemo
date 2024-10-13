@@ -2,6 +2,7 @@ package com.example.retrofitdemo
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        val textView = findViewById<TextView>(R.id.text_view)
+
         val retService = RetrofitInstance
             .getRetrofitInstance()
             .create(AlbumService::class.java)
@@ -31,7 +34,10 @@ class MainActivity : AppCompatActivity() {
             if (albumsList != null) {
                 while (albumsList.hasNext()) {
                     val albumItem: AlbumItem = albumsList.next()
-                    Log.i("MyTag", albumItem.title)
+                    val result =
+                        "Album id: ${albumItem.id}, Album title: ${albumItem.title}, User id: ${albumItem.userId}"
+                    textView.append(result)
+                    Log.i("MyTag", textView.text.toString())
                 }
             }
         })
