@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -36,7 +37,26 @@ android {
 }
 
 dependencies {
-    implementation("com.squareup.retrofit2:retrofit:2.11.0)
+    val retrofit_version = "2.11.0"
+    val coroutines_version = "1.9.0"
+    val lifecycle_version = "2.8.6"
+
+    // retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+
+    // ok http logging interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
